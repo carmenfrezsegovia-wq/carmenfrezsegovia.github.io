@@ -1,0 +1,485 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=La+Belle+Aurore&display=swap');
+
+:root {
+    --color-mahogany: #7B1113;
+    --color-moss: #3A4B3A; /* Deep Moss Green for dark contrast instead of black */
+    --color-ivory: #FDF9F1;
+    --color-cream: #F5EFEB;
+    --color-bone: #E8DDCD;
+    --color-accent-yellow: #F4C430;
+    --color-accent-pink: #E91E63;
+    
+    --font-heading: 'Outfit', sans-serif;
+    --font-handwritten: 'La Belle Aurore', cursive;
+    --font-body: 'Outfit', sans-serif;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-ivory);
+    color: var(--color-moss);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Background Texture Layer */
+.floral-bg {
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    width: 110vw;
+    height: 110vh;
+    background-image: url('assets/floral_collage.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.85; /* Much more visible to bring out the Frida Kahlo flower theme */
+    z-index: -3; /* Placed behind the texture */
+    pointer-events: none;
+    /* Removed the heavy blur to keep the vivid, vibrant floral details sharp */
+}
+
+/* Make the texture overlay over the loud flowers instead of the other way around */
+.texture-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('assets/refined_hemp.png');
+    background-size: 300px; /* Makes the weave tightly packed */
+    background-position: center;
+    opacity: 0.6; /* Increased opacity so the fabric texture remains visible over the flowers */
+    z-index: -2;
+    pointer-events: none;
+    filter: contrast(1.1) brightness(1.2); /* Smoothes out and brightens the fabric */
+    mix-blend-mode: multiply; /* Blends the fabric into the loud floral background */
+}
+
+/* Typography styles */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-mahogany);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+h1 { font-size: 5rem; line-height: 0.9; }
+h2 { font-size: 3.5rem; }
+h3 { font-size: 2.5rem; }
+
+.handwritten {
+    font-family: var(--font-handwritten);
+    color: var(--color-mahogany);
+    font-size: 2rem;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 400;
+    transform: rotate(-2deg);
+    display: inline-block;
+}
+
+p {
+    font-size: 1.1rem;
+    color: var(--color-moss);
+    max-width: 650px;
+    margin-bottom: 1.5rem;
+}
+
+/* Utilities */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.scrapbook-element {
+    position: relative;
+    background-color: var(--color-cream);
+    padding: 2rem;
+    box-shadow: 5px 8px 20px rgba(123, 17, 19, 0.1);
+}
+
+.tape {
+    position: absolute;
+    width: 120px;
+    height: 30px;
+    background-color: rgba(232, 221, 205, 0.7);
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+/* Header & Nav */
+header {
+    padding: 2rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(to bottom, var(--color-ivory), transparent);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px; /* Adjust based on logo proportions */
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-moss);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-mahogany);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 100px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 800px;
+    z-index: 2;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: clamp(4rem, 8vw, 8rem);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.hero .sub-headline {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-mahogany);
+    margin-bottom: 2rem;
+}
+
+.hero-images {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45%;
+    height: 70vh;
+    z-index: 1;
+}
+
+.hero-images::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/floral_collage.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transform: rotate(-3deg);
+    box-shadow: 10px 10px 30px rgba(123, 17, 19, 0.4);
+    border: 8px solid var(--color-bone);
+}
+
+.hero-images .collage-img {
+    position: absolute;
+    object-fit: cover;
+    box-shadow: 10px 10px 30px rgba(58, 75, 58, 0.3);
+    border: 12px solid var(--color-bone);
+    transition: transform 0.5s ease;
+}
+
+.hero-images .img-1 {
+    width: 300px;
+    height: 400px;
+    top: 10%;
+    right: 20%;
+    transform: rotate(5deg);
+    z-index: 3;
+}
+.hero-images .img-2 {
+    width: 250px;
+    height: 350px;
+    bottom: 0%;
+    right: 50%;
+    transform: rotate(-8deg);
+    z-index: 2;
+}
+
+.hero-images .floral-accent {
+    position: absolute;
+    width: 200px;
+    z-index: 4;
+    top: -5%;
+    right: 10%;
+    filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.1));
+}
+
+/* Pillars Section */
+.pillars {
+    padding: 8rem 0;
+    background-color: var(--color-cream);
+    position: relative;
+}
+
+.pillars::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: var(--color-cream);
+    transform: skewY(-2deg);
+    z-index: 1;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.pillar-card {
+    background-color: var(--color-ivory);
+    padding: 3rem 2rem;
+    border: 1px solid var(--color-bone);
+    position: relative;
+    box-shadow: 4px 4px 15px rgba(123, 17, 19, 0.05);
+}
+
+.pillar-card:nth-child(2) {
+    transform: translateY(30px);
+}
+
+.pillar-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--color-mahogany);
+}
+
+/* Products Section */
+.collection {
+    padding: 10rem 0;
+    position: relative;
+}
+
+.collection-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.product-showcase {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    position: relative;
+}
+
+.product-images {
+    flex: 1;
+    position: relative;
+    height: 600px;
+}
+
+.product-images::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background-image: url('assets/floral_collage.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transform: rotate(2deg);
+    box-shadow: 10px 10px 30px rgba(123, 17, 19, 0.4);
+    border: 5px solid var(--color-bone);
+}
+
+.product-images img {
+    position: absolute;
+    width: 80%;
+    box-shadow: 15px 15px 40px rgba(58, 75, 58, 0.25);
+    border: 15px solid var(--color-ivory);
+}
+
+.product-images img.front {
+    top: 0;
+    left: 0;
+    z-index: 3;
+    transform: rotate(-3deg);
+}
+
+.product-images img.back {
+    bottom: 0;
+    right: -10%;
+    z-index: 2;
+    transform: rotate(4deg);
+    width: 70%;
+}
+
+.product-info {
+    flex: 1;
+    background-color: var(--color-bone);
+    padding: 4rem;
+    position: relative;
+    transform: rotate(1deg);
+}
+
+/* Raw Manifesto */
+.manifesto {
+    padding: 8rem 0;
+    background-color: var(--color-mahogany);
+    color: var(--color-ivory);
+    position: relative;
+}
+
+.manifesto * {
+    color: var(--color-ivory);
+}
+
+.manifesto h2 {
+    color: var(--color-accent-yellow);
+}
+
+.manifesto .handwritten {
+    color: var(--color-accent-pink);
+}
+
+.manifesto-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.manifesto ul {
+    list-style: none;
+    text-align: left;
+    margin-top: 3rem;
+}
+
+.manifesto li {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.manifesto li::before {
+    content: '•';
+    color: var(--color-accent-yellow);
+    font-size: 2rem;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+/* About & Video */
+.about-section {
+    padding: 10rem 0;
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-media {
+    flex: 1;
+    position: relative;
+}
+
+.video-container {
+    width: 100%;
+    border: 10px solid var(--color-cream);
+    box-shadow: 10px 10px 25px rgba(58, 75, 58, 0.2);
+    transform: rotate(-2deg);
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+}
+
+/* Footer */
+footer {
+    padding: 5rem 0 2rem;
+    background-color: var(--color-moss);
+    color: var(--color-cream);
+    text-align: center;
+}
+
+footer * {
+    color: var(--color-cream);
+}
+
+footer h2 {
+    color: var(--color-ivory);
+}
+
+.insta-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.insta-link:hover {
+    color: var(--color-accent-yellow);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .product-showcase, .about-section {
+        flex-direction: column;
+    }
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-images {
+        display: none; /* simple fallback for small screens */
+    }
+}
